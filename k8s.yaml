@@ -1,0 +1,29 @@
+##################################################################################################
+# Foo service
+##################################################################################################
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: foo-service
+  labels:
+    app: foo
+    version: v1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: foo
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: foo
+        version: v1
+    spec:
+      containers:
+        - name: foo
+          image: foo-service:1.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000

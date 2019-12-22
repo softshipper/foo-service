@@ -3,10 +3,13 @@ val CirceVersion = "0.12.3"
 val Specs2Version = "4.7.0"
 val LogbackVersion = "1.2.3"
 
+git.useGitDescribe := true
+
 lazy val root = (project in file("."))
   .settings(
     organization := "com.sweetsoft",
     name := "foo-service",
+    version := "1.0.0",
     scalaVersion := "2.13.0",
     libraryDependencies ++= Seq(
       "org.http4s" %% "http4s-blaze-server" % Http4sVersion,
