@@ -23,7 +23,21 @@ spec:
     spec:
       containers:
         - name: foo
-          image: foo-service:1.0.0
+          image: docker.io/softshipper/foo-service:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: foo
+  labels:
+    app: foo
+    service: foo
+spec:
+  ports:
+    - port: 3000
+      name: http
+  selector:
+    app: foo
