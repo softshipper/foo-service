@@ -4,7 +4,9 @@ val Specs2Version = "4.7.0"
 val LogbackVersion = "1.2.3"
 
 git.useGitDescribe := true
-dockerAlias := DockerAlias(None, Some("softshipper"), (packageName in Docker).value, git.gitDescribedVersion.value)
+dockerRepository := Some("softshipper")
+//dockerAlias := DockerAlias(None, Some("softshipper"), (packageName in Docker).value, git.gitDescribedVersion.value)
+dockerBaseImage := "openjdk:11.0.5-jre"
 
 lazy val root = (project in file("."))
   .settings(
@@ -23,7 +25,7 @@ lazy val root = (project in file("."))
     ),
     addCompilerPlugin("org.typelevel" %% "kind-projector" % "0.10.3"),
     addCompilerPlugin("com.olegpy" %% "better-monadic-for" % "0.3.0"),
-  ).enablePlugins(GitVersioning, JavaServerAppPackaging, DockerPlugin, JlinkPlugin)
+  ).enablePlugins(GitVersioning, JavaServerAppPackaging, DockerPlugin)
 
 scalacOptions ++= Seq(
   "-deprecation",
